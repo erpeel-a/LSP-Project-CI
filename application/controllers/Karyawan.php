@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends CI_Controller
+class Karyawan extends CI_Controller
 {
     public function index()
     {
@@ -9,7 +9,7 @@ class Home extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('home', $data);
+        $this->load->view('karyawan/home', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -19,7 +19,7 @@ class Home extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('tambah-karyawan', $data);
+        $this->load->view('karyawan/tambah', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -33,7 +33,7 @@ class Home extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('edit-karyawan', $data);
+        $this->load->view('karyawan/edit', $data);
         $this->load->view('layouts/footer');
     }
 

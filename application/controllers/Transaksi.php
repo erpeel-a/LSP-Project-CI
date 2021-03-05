@@ -9,7 +9,7 @@ class Transaksi extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('transaksi', $data);
+        $this->load->view('transaksi/home', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -19,7 +19,7 @@ class Transaksi extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('tambah-transaksi', $data);
+        $this->load->view('transaksi/tambah', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -33,7 +33,7 @@ class Transaksi extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('edit-transaksi', $data);
+        $this->load->view('transaksi/edit', $data);
         $this->load->view('layouts/footer');
     }
 

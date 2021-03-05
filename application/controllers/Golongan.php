@@ -9,7 +9,7 @@ class Golongan extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('golongan', $data);
+        $this->load->view('golongan/home', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -19,7 +19,7 @@ class Golongan extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('tambah-golongan', $data);
+        $this->load->view('golongan/tambah', $data);
         $this->load->view('layouts/footer');
     }
 
@@ -33,7 +33,7 @@ class Golongan extends CI_Controller
         $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
-        $this->load->view('edit-golongan', $data);
+        $this->load->view('golongan/edit', $data);
         $this->load->view('layouts/footer');
     }
 
