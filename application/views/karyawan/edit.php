@@ -3,7 +3,7 @@
     <a href=<?= base_url('/') ?> class="bg-dark text-white py-2 px-4 rounded">Data Karyawan</a>
 </div>
 
-<form action=<?= base_url('home/action_edit') ?> method="POST">
+<form action=<?= base_url('karyawan/action_edit') ?> method="POST">
     <div class="px-4 d-flex justify-content-center">
         <table width="70%">
             <tr>
