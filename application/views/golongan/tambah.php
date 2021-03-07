@@ -1,9 +1,9 @@
 <div class="mt-5 p-4 d-flex align-items-center justify-content-between">
     <h1><?= $title; ?></h1>
-    <a href=<?= base_url('/golongan') ?> class="bg-dark text-white py-2 px-4 rounded">Data Golongan</a>
+    <a href="<?= base_url('/golongan') ?>" class="bg-dark text-white py-2 px-4 rounded">Data Golongan</a>
 </div>
 
-<form action=<?= base_url('golongan/action_tambah') ?> method="POST">
+<form action="<?= base_url('golongan/action_tambah') ?>" method="POST">
     <div class="px-4 d-flex justify-content-center">
         <table width="70%">
             <tr>

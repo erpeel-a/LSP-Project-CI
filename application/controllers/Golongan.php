@@ -2,10 +2,15 @@
 
 class Golongan extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('url');
+    }
+
     public function index()
     {
         $data['title'] = 'Data Golongan';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('golongan/home', $data);
@@ -15,7 +20,6 @@ class Golongan extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Golongan';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('golongan/tambah', $data);
@@ -29,7 +33,6 @@ class Golongan extends CI_Controller
         $data['golongan'] = $golongan;
         $data['title'] = 'Edit Golongan';
         $data['id'] = $id;
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('golongan/edit', $data);
@@ -45,13 +48,10 @@ class Golongan extends CI_Controller
 
     public function action_tambah()
     {
-        $golongan = $this->input->post('golongan');
-        $gajipokok = $this->input->post('gajipokok');
-        $tunjangan = $this->input->post('tunjangan');
         $data = array(
-            'golongan' => $golongan,
-            'gajipokok' => $gajipokok,
-            'tunjangan' => $tunjangan,
+            'golongan' => $this->input->post('golongan'),
+            'gajipokok' => $this->input->post('gajipokok'),
+            'tunjangan' => $this->input->post('tunjangan'),
         );
         $this->db->insert('gaji', $data);
         redirect('/golongan');
@@ -60,13 +60,13 @@ class Golongan extends CI_Controller
     public function action_edit()
     {
         $golongan = $this->input->post('golongan');
-        $gajipokok = $this->input->post('gajipokok');
-        $tunjangan = $this->input->post('tunjangan');
-        $this->db->set('golongan', $golongan);
-        $this->db->set('gajipokok', $gajipokok);
-        $this->db->set('tunjangan', $tunjangan);
+        $data = array(
+            'golongan' => $this->input->post('golongan'),
+            'gajipokok' => $this->input->post('gajipokok'),
+            'tunjangan' => $this->input->post('tunjangan'),
+        );
         $this->db->where('golongan', $golongan);
-        $this->db->update('gaji');
+        $this->db->update('gaji', $data);
         redirect('/golongan');
     }
 }

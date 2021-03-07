@@ -2,10 +2,15 @@
 
 class Transaksi extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('url');
+    }
+
     public function index()
     {
         $data['title'] = 'Data Transaksi';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('transaksi/home', $data);
@@ -15,7 +20,6 @@ class Transaksi extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Transaksi';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('transaksi/tambah', $data);
@@ -29,7 +33,6 @@ class Transaksi extends CI_Controller
         $data['transaksi'] = $transaksi;
         $data['title'] = 'Edit Transaksi';
         $data['id'] = $id;
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('transaksi/edit', $data);
@@ -45,17 +48,12 @@ class Transaksi extends CI_Controller
 
     public function action_tambah()
     {
-        $bulan = $this->input->post('bulan');
-        $tahun = $this->input->post('tahun');
-        $namakaryawan = $this->input->post('namakaryawan');
-        $transport = $this->input->post('transport');
-        $lembur = $this->input->post('lembur');
         $data = array(
-            'bulan' => $bulan,
-            'tahun' => $tahun,
-            'idkaryawan' => $namakaryawan,
-            'transport' => $transport,
-            'lembur' => $lembur,
+            'bulan' => $this->input->post('bulan'),
+            'tahun' => $this->input->post('tahun'),
+            'idkaryawan' => $this->input->post('namakaryawan'),
+            'transport' => $this->input->post('transport'),
+            'lembur' => $this->input->post('lembur'),
         );
         $this->db->insert('transaksi', $data);
         redirect('/transaksi');
@@ -63,17 +61,16 @@ class Transaksi extends CI_Controller
 
     public function action_edit()
     {
-        $bulan = $this->input->post('bulan');
-        $tahun = $this->input->post('tahun');
-        $namakaryawan = $this->input->post('namakaryawan');
-        $transport = $this->input->post('transport');
-        $lembur = $this->input->post('lembur');
-        $this->db->set('bulan', $bulan);
-        $this->db->set('tahun', $tahun);
-        $this->db->set('namakaryawan', $namakaryawan);
-        $this->db->set('transport', $transport);
-        $this->db->set('lembur', $lembur);
-        $this->db->insert('transaksi');
+        $idtransaksi = $this->input->post('idtransaksi');
+        $data = array(
+            'bulan' => $this->input->post('bulan'),
+            'tahun' => $this->input->post('tahun'),
+            'idkaryawan' => $this->input->post('namakaryawan'),
+            'transport' => $this->input->post('transport'),
+            'lembur' => $this->input->post('lembur'),
+        );
+        $this->db->where('idtransaksi', $idtransaksi);
+        $this->db->update()('transaksi', $data);
         redirect('/transaksi');
     }
 }

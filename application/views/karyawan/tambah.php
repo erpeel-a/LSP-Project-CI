@@ -1,9 +1,9 @@
 <div class="mt-5 p-4 d-flex align-items-center justify-content-between">
     <h1><?= $title; ?></h1>
-    <a href=<?= base_url('/') ?> class="bg-dark text-white py-2 px-4 rounded">Data Karyawan</a>
+    <a href="<?= base_url('/') ?>" class="bg-dark text-white py-2 px-4 rounded">Data Karyawan</a>
 </div>
 
-<form action=<?= base_url('karyawan/action_tambah') ?> method="POST">
+<form action="<?= base_url('karyawan/action_tambah') ?>" method="POST">
     <div class="px-4 d-flex justify-content-center">
         <table width="70%">
             <tr>
@@ -14,8 +14,8 @@
                 <td>Jenis Kelamin</td>
                 <td>
                     <select required name="jeniskelamin" class="form-control" id="exampleFormControlSelect1">
-                        <option>L</option>
-                        <option>P</option>
+                        <option value="L">L</option>
+                        <option value="P">P</option>
                     </select>
                 </td>
             </tr>
@@ -39,7 +39,7 @@
                         $query = $this->db->query('SELECT golongan FROM gaji');
                         foreach ($query->result() as $row) {
                         ?>
-                            <option><?= $row->golongan; ?></option>
+                            <option value="<?= $row->golongan; ?>"><?= $row->golongan; ?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -48,8 +48,8 @@
                 <td>Status</td>
                 <td>
                     <select required name="status" class="form-control" id="exampleFormControlSelect1">
-                        <option>A</option>
-                        <option>N</option>
+                        <option value="A">A</option>
+                        <option value="N">N</option>
                     </select>
                 </td>
             </tr>

@@ -2,10 +2,15 @@
 
 class Karyawan extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('url');
+    }
+
     public function index()
     {
         $data['title'] = 'Data Karyawan';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('karyawan/home', $data);
@@ -15,7 +20,6 @@ class Karyawan extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Karyawan';
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('karyawan/tambah', $data);
@@ -29,7 +33,6 @@ class Karyawan extends CI_Controller
         $data['karyawan'] = $karyawan;
         $data['title'] = 'Edit Karyawan';
         $data['id'] = $id;
-        $this->load->helper('url');
         $this->load->view('layouts/header', $data);
         $this->load->view('layouts/menu');
         $this->load->view('karyawan/edit', $data);
@@ -45,21 +48,14 @@ class Karyawan extends CI_Controller
 
     public function action_tambah()
     {
-        $nama = $this->input->post('nama');
-        $jeniskelamin = $this->input->post('jeniskelamin');
-        $alamat = $this->input->post('alamat');
-        $tempatlahir = $this->input->post('tempatlahir');
-        $tgllahir = $this->input->post('tgllahir');
-        $golongan = $this->input->post('golongan');
-        $status = $this->input->post('status');
         $data = array(
-            'namakaryawan' => $nama,
-            'jeniskelamin' => $jeniskelamin,
-            'alamat' => $alamat,
-            'tempatlahir' => $tempatlahir,
-            'tgllahir' => $tgllahir,
-            'golongan' => $golongan,
-            'status' => $status,
+            'namakaryawan' =>  $this->input->post('nama'),
+            'jeniskelamin' => $this->input->post('jeniskelamin'),
+            'alamat' => $this->input->post('alamat'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => $this->input->post('tgllahir'),
+            'golongan' => $this->input->post('golongan'),
+            'status' => $this->input->post('status'),
         );
         $this->db->insert('karyawan', $data);
         redirect('/');
@@ -68,22 +64,17 @@ class Karyawan extends CI_Controller
     public function action_edit()
     {
         $idkaryawan = $this->input->post('idkaryawan');
-        $nama = $this->input->post('nama');
-        $jeniskelamin = $this->input->post('jeniskelamin');
-        $alamat = $this->input->post('alamat');
-        $tempatlahir = $this->input->post('tempatlahir');
-        $tgllahir = $this->input->post('tgllahir');
-        $golongan = $this->input->post('golongan');
-        $status = $this->input->post('status');
-        $this->db->set('namakaryawan', $nama);
-        $this->db->set('jeniskelamin', $jeniskelamin);
-        $this->db->set('alamat', $alamat);
-        $this->db->set('tempatlahir', $tempatlahir);
-        $this->db->set('tgllahir', $tgllahir);
-        $this->db->set('golongan', $golongan);
-        $this->db->set('status', $status);
+        $data = array(
+            'namakaryawan' =>  $this->input->post('nama'),
+            'jeniskelamin' => $this->input->post('jeniskelamin'),
+            'alamat' => $this->input->post('alamat'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => $this->input->post('tgllahir'),
+            'golongan' => $this->input->post('golongan'),
+            'status' => $this->input->post('status'),
+        );
         $this->db->where('idkaryawan', $idkaryawan);
-        $this->db->update('karyawan');
+        $this->db->update('karyawan', $data);
         redirect('/');
     }
 }
